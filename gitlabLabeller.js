@@ -65,6 +65,7 @@ function putLabels(merge) {
 }
 
 function addLabel(merge, newLabel) {
+	console.log('Adding ' + newLabel + ' to #' + merge.iid);
 	merge.labels = merge.labels.concat([newLabel]);
 	putLabels(merge);
 }
