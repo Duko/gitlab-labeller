@@ -76,10 +76,10 @@ function checkApproved(merge, callback) {
 				body += chunk;
             });
 
-			res.on('end', function() {
-				response = JSON.parse(body);
-				callback(!Boolean(response.approvals_left));
-			});
+            res.on('end', function() {
+                response = JSON.parse(body);
+                callback(!Boolean(response.approvals_left));
+            });
         }
     );
 
@@ -91,16 +91,15 @@ function checkApproved(merge, callback) {
 // ---
 
 getMergeRequests(function (merges) {
-	merges.forEach(function (merge) {
-		checkApproved(merge, function(isApproved) {
-			if (merge.labels.indexOf(approvedLabel) === -1 && isApproved) {
-				addLabel(merge, approvedLabel);
-			}
-		});
+    merges.forEach(function (merge) {
+        eckApproved(merge, function(isApproved) {
+            if (merge.labels.indexOf(approvedLabel) === -1 && isApproved) {
+                addLabel(merge, approvedLabel);
+            }
+        });
 
-		if (merge.labels.indexOf(wipLabel) === -1 && merge.work_in_progress) {
-			addLabel(merge, wipLabel);
-		}
-
+        if (merge.labels.indexOf(wipLabel) === -1 && merge.work_in_progress) {
+            addLabel(merge, wipLabel);
+        }
     });
 });
