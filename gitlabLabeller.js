@@ -24,7 +24,7 @@ var token = process.env.API_TOKEN;
 var projectId = process.env.PROJECT_ID;
 var approvedLabel = 'Approved';
 var wipLabel = 'Work in progress';
-
+var updateInterval = process.env.UPDATE_INTERVAL || 60000;
 // ---------
 // FUNCTIONS
 // ---------
@@ -103,6 +103,8 @@ function checkApproved(merge, callback) {
 // GO!
 // ---
 
+console.log('Updating every ' + updateInterval + ' milliseconds');
+
 setInterval(function() {
 	getMergeRequests(function (merges) {
 		merges.forEach(function (merge) {
@@ -117,4 +119,4 @@ setInterval(function() {
 			}
 		});
 	});
-}, 60000);
+}, updateInterval);
