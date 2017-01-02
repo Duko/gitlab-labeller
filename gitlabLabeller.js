@@ -98,16 +98,18 @@ function checkApproved(merge, callback) {
 // GO!
 // ---
 
-getMergeRequests(function (merges) {
-    merges.forEach(function (merge) {
-        checkApproved(merge, function(isApproved) {
-            if (merge.labels.indexOf(approvedLabel) === -1 && isApproved) {
-                addLabel(merge, approvedLabel);
-            }
-        });
+setInterval(function() {
+	getMergeRequests(function (merges) {
+		merges.forEach(function (merge) {
+			checkApproved(merge, function(isApproved) {
+				if (merge.labels.indexOf(approvedLabel) === -1 && isApproved) {
+					addLabel(merge, approvedLabel);
+				}
+			});
 
-        if (merge.labels.indexOf(wipLabel) === -1 && merge.work_in_progress) {
-            addLabel(merge, wipLabel);
-        }
-    });
-});
+			if (merge.labels.indexOf(wipLabel) === -1 && merge.work_in_progress) {
+				addLabel(merge, wipLabel);
+			}
+		});
+	});
+}, 60000);
