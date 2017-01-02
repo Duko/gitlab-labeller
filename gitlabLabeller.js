@@ -6,6 +6,10 @@ process.on('SIGTERM', function() {
 	process.exit(1);
 });
 
+process.on('SIGINT', function() {
+	process.exit(1);
+});
+
 process.on('exit', function() {
 	console.log("Shutting Down");
 });
