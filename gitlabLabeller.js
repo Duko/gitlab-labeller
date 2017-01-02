@@ -92,7 +92,7 @@ function checkApproved(merge, callback) {
 
 getMergeRequests(function (merges) {
     merges.forEach(function (merge) {
-        eckApproved(merge, function(isApproved) {
+        checkApproved(merge, function(isApproved) {
             if (merge.labels.indexOf(approvedLabel) === -1 && isApproved) {
                 addLabel(merge, approvedLabel);
             }
