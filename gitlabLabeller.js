@@ -90,8 +90,8 @@ function checkApproved(merge, callback) {
             });
 
             res.on('end', function() {
-                response = JSON.parse(body);
-                callback(!Boolean(response.approvals_left));
+                var json = JSON.parse(body);
+                callback(!Boolean(json.approvals_left));
             });
         }
     );
