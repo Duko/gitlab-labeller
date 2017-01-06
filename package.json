@@ -1,0 +1,27 @@
+{
+  "name": "gitlab-labeller",
+  "version": "1.0.0",
+  "description": "node app for adding labels to merge requests",
+  "main": "gitlabLabeller.js",
+  "scripts": {
+    "start": "node gitlabLabeller.js",
+    "test": "standard",
+    "fix-lint": "standard --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Duko/gitlab-labeller.git"
+  },
+  "keywords": [
+    "gitlab"
+  ],
+  "author": "Thomas Jensen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Duko/gitlab-labeller/issues"
+  },
+  "homepage": "https://github.com/Duko/gitlab-labeller#readme",
+  "devDependencies": {
+    "standard": "^8.6.0"
+  }
+}
