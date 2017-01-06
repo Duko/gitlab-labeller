@@ -74,6 +74,14 @@ function addLabel(merge, newLabel) {
 	putLabels(merge);
 }
 
+function removeLabel(merge, label) {
+	console.log('Removing ' + label + ' for #' + merge.iid);
+	merge.labels = merge.labels.filter(function(l) {
+		return l != label;
+	});
+	putLabels(merge);
+}
+
 function checkApproved(merge, callback) {
     var req = https.request(
         {
@@ -112,10 +120,18 @@ setInterval(function() {
 				if (merge.labels.indexOf(approvedLabel) === -1 && isApproved) {
 					addLabel(merge, approvedLabel);
 				}
+
+				if (merge.labels.indexOf(approvedLabel) > -1 && isApproved === false) {
+					removeLabel(merge, approvedLabel)
+				}
 			});
 
 			if (merge.labels.indexOf(wipLabel) === -1 && merge.work_in_progress) {
 				addLabel(merge, wipLabel);
+			}
+
+			if (merge.labels.indexOf(wipLabel) > -1 && merge.work_in_progress === false) {
+				removeLabel(merge, wipLabel);
 			}
 		});
 	});
